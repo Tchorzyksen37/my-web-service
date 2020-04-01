@@ -9,8 +9,12 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import tchorzyksen.SpringApplicationContext;
+import tchorzyksen.service.UserService;
+import tchorzyksen.shared.dto.UserDto;
 import tchorzyksen.ui.model.request.UserLoginRequestModel;
 
+import javax.jws.soap.SOAPBinding;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -56,9 +60,14 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
                 .signWith( SignatureAlgorithm.HS512, SecurityConstants.TOKEN_SECRET )
                 .compact(  );
 
+        UserService userService = (UserService) SpringApplicationContext.getBean("userServiceImpl");
+        UserDto userDto = userService.getUser(userName);
+
         response.addHeader(
                 SecurityConstants.HEADER_STRING,
                 SecurityConstants.TOKEN_PREFIX + token );
+
+        response.addHeader("UserID", userDto.getUserId());
     }
 }
 

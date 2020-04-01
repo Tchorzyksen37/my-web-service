@@ -7,7 +7,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import tchorzyksen.UserRepository;
+import tchorzyksen.repositories.UserRepository;
 import tchorzyksen.entity.UserEntity;
 import tchorzyksen.service.UserService;
 import tchorzyksen.shared.Utils;
@@ -48,6 +48,19 @@ public class UserServiceImpl implements UserService {
         BeanUtils.copyProperties(storedUser, createdUser);
 
         return createdUser;
+    }
+
+    @Override
+    public UserDto getUser(String email) {
+        UserEntity userEntity = userRepository.findUserByEmail(email);
+
+        if (userEntity == null)
+            throw new UsernameNotFoundException(email);
+
+        UserDto userDto = new UserDto();
+        BeanUtils.copyProperties(userEntity, userDto);
+
+        return userDto;
     }
 
     @Override
