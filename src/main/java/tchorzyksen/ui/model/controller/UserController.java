@@ -17,8 +17,8 @@ public class UserController {
     UserService userService;
 
     @GetMapping
-    public UserEntity getUser() {
-        return new UserEntity();
+    public UserResponse getUser() {
+        return new UserResponse();
     }
 
     @PostMapping
