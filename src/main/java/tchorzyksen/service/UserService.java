@@ -5,8 +5,7 @@ import tchorzyksen.shared.dto.UserDto;
 
 public interface UserService extends UserDetailsService {
 
-    UserDto createUser(UserDto userDto);
+  UserDto createUser(UserDto userDto);
 
-    UserDto getUser(String email);
-
+  UserDto getUser(String email);
 }

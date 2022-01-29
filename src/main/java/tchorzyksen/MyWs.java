@@ -8,23 +8,22 @@ import tchorzyksen.security.AppProperties;
 
 @SpringBootApplication
 public class MyWs {
-    public static void main(String[] args) {
-        SpringApplication.run(MyWs.class, args);
-    }
+  public static void main(String[] args) {
+    SpringApplication.run(MyWs.class, args);
+  }
 
-    @Bean
-    public BCryptPasswordEncoder bCryptPasswordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+  @Bean
+  public BCryptPasswordEncoder bCryptPasswordEncoder() {
+    return new BCryptPasswordEncoder();
+  }
 
-    @Bean
-    public SpringApplicationContext springApplicationContext() {
-        return new SpringApplicationContext();
-    }
+  @Bean
+  public SpringApplicationContext springApplicationContext() {
+    return new SpringApplicationContext();
+  }
 
-    @Bean(name="AppProperties")
-    public AppProperties getAppProperties(){
-        return new AppProperties();
-    }
-
+  @Bean(name = "AppProperties")
+  public AppProperties getAppProperties() {
+    return new AppProperties();
+  }
 }

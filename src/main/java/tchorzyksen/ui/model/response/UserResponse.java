@@ -1,41 +1,17 @@
 package tchorzyksen.ui.model.response;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class UserResponse {
 
-    private String userId;
-    private String firstName;
-    private String lastName;
-    private String email;
+  private String userId;
 
-    public String getUserId() {
-        return userId;
-    }
+  private String firstName;
 
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
+  private String lastName;
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
+  private String email;
 }
