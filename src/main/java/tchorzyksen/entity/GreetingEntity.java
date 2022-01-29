@@ -1,5 +1,8 @@
 package tchorzyksen.entity;
 
+import lombok.Getter;
+
+@Getter
 public class GreetingEntity {
 
   private final long id;
@@ -9,13 +12,5 @@ public class GreetingEntity {
   public GreetingEntity(long id, String content) {
     this.id = id;
     this.content = content;
-  }
-
-  public long getId() {
-    return id;
-  }
-
-  public String getContent() {
-    return content;
   }
 }
