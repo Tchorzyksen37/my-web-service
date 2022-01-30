@@ -1,31 +1,40 @@
 plugins {
-    id 'org.springframework.boot' version '2.6.3'
-    id 'java'
-    id 'maven-publish'
+  id 'org.springframework.boot' version '2.6.3'
+  id 'org.unbroken-dome.test-sets' version '4.0.0'
+  id 'java'
+  id 'groovy'
+  id 'maven-publish'
 }
 
+apply from: "${rootDir}/gradle/test.gradle"
+
 repositories {
-    mavenLocal()
-    maven {
-        url = uri('https://repo.maven.apache.org/maven2/')
-    }
-    mavenCentral()
+  mavenLocal()
+  maven {
+    url = uri('https://repo.maven.apache.org/maven2/')
+  }
+  mavenCentral()
 }
 
 dependencies {
-    implementation(group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '2.6.3')
-    implementation(group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '2.6.3')
-    implementation(group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: '2.6.3')
+  implementation(group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '2.6.3')
+  implementation(group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '2.6.3')
+  implementation(group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: '2.6.3')
 
-    implementation(group: 'org.postgresql', name: 'postgresql', version: '42.2.8')
-    implementation(group: 'javax.xml.bind', name: 'jaxb-api', version: '2.3.1')
-    implementation(group: 'io.jsonwebtoken', name: 'jjwt', version: '0.6.0')
+  implementation(group: 'org.postgresql', name: 'postgresql', version: '42.2.8')
+  implementation(group: 'javax.xml.bind', name: 'jaxb-api', version: '2.3.1')
+  implementation(group: 'io.jsonwebtoken', name: 'jjwt', version: '0.6.0')
 
-    compileOnly 'org.projectlombok:lombok:1.18.22'
-    annotationProcessor 'org.projectlombok:lombok:1.18.22'
+  compileOnly 'org.projectlombok:lombok:1.18.22'
+  annotationProcessor 'org.projectlombok:lombok:1.18.22'
 
-    testCompileOnly 'org.projectlombok:lombok:1.18.22'
-    testAnnotationProcessor 'org.projectlombok:lombok:1.18.22'
+  testCompileOnly 'org.projectlombok:lombok:1.18.22'
+  testAnnotationProcessor 'org.projectlombok:lombok:1.18.22'
+
+  testImplementation(group: 'org.codehaus.groovy', name: 'groovy-all', version: '3.0.9')
+  testImplementation(group: 'org.spockframework', name: 'spock-core', version: '2.0-groovy-3.0')
+  testImplementation(group: 'org.spockframework', name: 'spock-spring', version: '2.1-M2-groovy-3.0')
+  testImplementation(group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: '2.6.3')
 
 }
 
@@ -35,13 +44,13 @@ description = 'MyWs'
 java.sourceCompatibility = JavaVersion.VERSION_17
 
 publishing {
-    publications {
-        maven(MavenPublication) {
-            from(components.java)
-        }
+  publications {
+    maven(MavenPublication) {
+      from(components.java)
     }
+  }
 }
 
 tasks.withType(JavaCompile) {
-    options.encoding = 'UTF-8'
+  options.encoding = 'UTF-8'
 }
