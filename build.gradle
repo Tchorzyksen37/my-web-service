@@ -38,9 +38,9 @@ dependencies {
 
 }
 
-group = 'tchorzyksen'
+group = 'pl.tchorzyksen'
 version = '1.0.0-SNAPSHOT'
-description = 'MyWs'
+description = 'my-web-service'
 java.sourceCompatibility = JavaVersion.VERSION_17
 
 publishing {

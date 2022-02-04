@@ -7,10 +7,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import pl.tchorzyksen.security.AppProperties;
 
 @SpringBootApplication
-public class MyWs {
+public class MyWebService {
 
   public static void main(String[] args) {
-    SpringApplication.run(MyWs.class, args);
+    SpringApplication.run(MyWebService.class, args);
   }
 
   @Bean
