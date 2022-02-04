@@ -17,6 +17,9 @@ repositories {
 }
 
 dependencies {
+  implementation platform(group: 'org.testcontainers', name: 'testcontainers-bom', version: '1.16.3')
+  implementation(group: 'ch.qos.logback', name: 'logback-core', version: '1.2.10')
+
   implementation(group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '2.6.3')
   implementation(group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '2.6.3')
   implementation(group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: '2.6.3')
