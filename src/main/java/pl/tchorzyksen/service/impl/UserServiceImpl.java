@@ -1,6 +1,8 @@
 package pl.tchorzyksen.service.impl;
 
 import java.util.ArrayList;
+import lombok.extern.slf4j.Slf4j;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
@@ -14,6 +16,7 @@ import pl.tchorzyksen.shared.Utils;
 import pl.tchorzyksen.shared.dto.UserDto;
 import pl.tchorzyksen.service.UserService;
 
+@Slf4j
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -23,26 +26,25 @@ public class UserServiceImpl implements UserService {
 
   @Autowired private BCryptPasswordEncoder bCryptPasswordEncoder;
 
+  private final ModelMapper modelMapper = new ModelMapper();
+
   @Override
   public UserDto createUser(UserDto userDto) {
 
     if (userRepository.findUserByEmail(userDto.getEmail()) != null)
       throw new RuntimeException("Record already exists");
 
-    UserEntity userEntity = new UserEntity();
-    BeanUtils.copyProperties(userDto, userEntity);
+    log.info("UserDto {}", userDto);
+    UserEntity userEntity = modelMapper.map(userDto, UserEntity.class);
+    log.info("UserEntity: {}", userEntity);
 
     String publicUserId = utils.generateUserId(30);
     userEntity.setUserId(publicUserId);
-
     userEntity.setEncryptedPassword(bCryptPasswordEncoder.encode(userDto.getPassword()));
 
     UserEntity storedUser = userRepository.save(userEntity);
 
-    UserDto createdUser = new UserDto();
-    BeanUtils.copyProperties(storedUser, createdUser);
-
-    return createdUser;
+    return modelMapper.map(storedUser, UserDto.class);
   }
 
   @Override

@@ -2,11 +2,11 @@ package pl.tchorzyksen.shared.dto;
 
 import java.io.Serial;
 import java.io.Serializable;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
-@Setter
+@Data
 public class UserDto implements Serializable {
 
   @Serial private static final long serialVersionUID = 1L;
@@ -15,9 +15,7 @@ public class UserDto implements Serializable {
 
   private String userId;
 
-  private String firstName;
-
-  private String lastName;
+  private PersonDto person;
 
   private String email;
 

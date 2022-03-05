@@ -1,15 +1,13 @@
 package pl.tchorzyksen.ui.model.request;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
-@Setter
+@Data
 public class UserRequestModel {
 
-  private String firstName;
-
-  private String lastName;
+  private PersonRequestModel person;
 
   private String email;
 
