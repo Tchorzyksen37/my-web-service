@@ -11,6 +11,7 @@ import org.springframework.test.context.junit4.SpringRunner
 import org.springframework.web.util.UriComponentsBuilder
 import spock.lang.Specification
 
+//@Testcontainers
 @ActiveProfiles("functional-test")
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = FunctionalTestConfiguration.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -18,6 +19,13 @@ abstract class AbstractFunctionalSpec extends Specification {
 
   @Autowired
   private TestRestTemplate testRestTemplate
+
+//  @Shared
+//  @Subject.Container
+//  protected GenericContainer postgresql = new GenericContainer<>(DockerImageName.parse("postgresql:latest"))
+//      .withExposedPorts(5432)
+
+//  @Shared protected PostgreSQLContainer postgreSQLContainer = new PostgreSQLContainer("postgres:latest")
 
   protected <T> ResponseEntity<T> get(String uri, Class<T> responseClass) {
     String stringUri = UriComponentsBuilder.fromUriString(uri).build().toUriString()

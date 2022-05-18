@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity
 import pl.tchorzyksen.AbstractFunctionalSpec
 import pl.tchorzyksen.entity.GreetingEntity
 
-class GreetingControllerSpec extends AbstractFunctionalSpec {
+class GreetingControllerFunctionalSpec extends AbstractFunctionalSpec {
 
   void "get #requestParam greeting #result "() {
     given: "uri"
